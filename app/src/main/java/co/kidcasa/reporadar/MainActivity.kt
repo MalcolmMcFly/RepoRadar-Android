@@ -4,47 +4,39 @@
 
 package co.kidcasa.reporadar
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.collectAsState
+import co.kidcasa.reporadar.topstarredrepos.ui.TopStarredReposScreen
+import co.kidcasa.reporadar.topstarredrepos.viewmodel.ReposViewModel
 import co.kidcasa.reporadar.ui.theme.RepoRadarTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val reposViewModel by viewModel<ReposViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RepoRadarTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                TopStarredReposScreen(
+                    topStarredReposState = reposViewModel.topStarredReposState.collectAsState(),
+                    onGetTopStarredRepos = { reposViewModel.getTopStarredRepos() },
+                    launchSettings = { openNetworkSettings() }
+                )
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RepoRadarTheme {
-        Greeting("Android")
+    /**
+     * Open internet settings
+     */
+    private fun openNetworkSettings() {
+        val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+        startActivity(intent)
     }
 }

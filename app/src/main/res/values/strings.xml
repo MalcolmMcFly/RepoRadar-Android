@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RepoRadar</string>
+    <string name="error_screen_title">Something went wrong.</string>
+    <string name="no_network">No network connection.</string>
+    <string name="settings">Settings</string>
+    <string name="retry">Retry</string>
+    <string name="rank">Rank: %s</string>
+    <string name="repo_name">Repo: %s</string>
+    <string name="top_contributor">Top Contributor: %s</string>
 </resources>

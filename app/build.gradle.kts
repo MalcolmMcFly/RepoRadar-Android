@@ -49,10 +49,12 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "GITHUB_TOKEN", "\"$githubToken\"")
+            buildConfigField("String", "GITHUB_BASE_URL", "\"https://api.github.com/\"")
         }
         release {
             isMinifyEnabled = false
             buildConfigField("String", "GITHUB_TOKEN", "\"$githubToken\"")
+            buildConfigField("String", "GITHUB_BASE_URL", "\"https://api.github.com/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -88,6 +90,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

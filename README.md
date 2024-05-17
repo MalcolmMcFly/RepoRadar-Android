@@ -24,3 +24,6 @@ To get started create the `apikeys.properties` at root level of the project and 
 2. [Koin](https://insert-koin.io/docs/quickstart/android/) for dependency injection.
 3. [Retrofit](https://square.github.io/retrofit/) for HTTP requests.
 4. [Coil](https://coil-kt.github.io/coil/) for image loading.
+
+## Useful Links
+1. [GitHub REST API documentation](https://docs.github.com/en/rest?apiVersion=2022-11-28)
