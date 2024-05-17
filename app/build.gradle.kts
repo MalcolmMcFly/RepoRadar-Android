@@ -26,6 +26,10 @@ android {
     namespace = "co.kidcasa.reporadar"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "co.kidcasa.reporadar"
         minSdk = 28
@@ -98,7 +102,7 @@ dependencies {
 
     // JSON
     implementation(libs.bundles.moshi)
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+    ksp(libs.moshi.kotlin.codegen)
 
     // Image Processing
     implementation(libs.bundles.coil)
