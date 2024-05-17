@@ -1,6 +1,25 @@
+/**
+ * Developed by Malcolm Woods
+ */
+
+import java.io.FileNotFoundException
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.devtools.ksp")
+}
+
+// Extension function to read properties file
+fun Project.loadProperties(fileName: String): Properties {
+    val propertiesFile = rootProject.file(fileName)
+    if (!propertiesFile.exists()) {
+        throw FileNotFoundException("The required file '$fileName' was not found in the project root.")
+    }
+    return Properties().apply {
+        load(propertiesFile.inputStream())
+    }
 }
 
 android {
@@ -12,7 +31,7 @@ android {
         minSdk = 28
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -20,9 +39,16 @@ android {
         }
     }
 
+    val properties = loadProperties("apikeys.properties")
+    val githubToken = properties.getProperty("github.token")
+
     buildTypes {
+        debug {
+            buildConfigField("String", "GITHUB_TOKEN", "\"$githubToken\"")
+        }
         release {
             isMinifyEnabled = false
+            buildConfigField("String", "GITHUB_TOKEN", "\"$githubToken\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -66,4 +92,17 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Koin Dependency Injection
+    implementation(libs.bundles.koin)
+
+    // JSON
+    implementation(libs.bundles.moshi)
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+
+    // Image Processing
+    implementation(libs.bundles.coil)
+
+    // Network
+    implementation(libs.bundles.network)
 }
