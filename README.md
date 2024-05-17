@@ -4,18 +4,19 @@ starred Github repositories.
 
 ## Software Requirements
 - [x] Maximum of three hours of development time.
-- [ ] Use the GitHub REST API to display a list of the 100 most
+- [x] Use the GitHub REST API to display a list of the 100 most
   starred Github repositories using `GET https://api.github.com/search/repositories?q=stars:>0`.
-- [ ] For each of the repositories, also display its top contributor.
-- [ ] To get the list of contributors for a given repository, use: `GET https://api.github.com/repos/{owner}/{repo}/contributors`
-- [ ] Use the provided OAuth2 token to avoid Github’s API rate limiting, but do not publish it.
-- [ ] Write your code in Kotlin, Java, or both.
-- [ ] Add any instructions in a README.
-- [ ] Handle any unique constraints and to-be-expected
+- [x] For each of the repositories, also display its top contributor.
+- [x] To get the list of contributors for a given repository, use: `GET https://api.github.com/repos/{owner}/{repo}/contributors`
+- [x] Use the provided OAuth2 token to avoid Github’s API rate limiting, but do not publish it.
+- [x] Write your code in Kotlin, Java, or both.
+- [x] Add any instructions in a README.
+- [x] Handle any unique constraints and to-be-expected
   circumstances on a mobile device.
 
 ## Getting Started
-To get started create the `apikeys.properties` at root level of the project and enter the value for `github.token=`
+To get started create the `apikeys.properties` at root level of the project and enter the value for `github.token=`  
+Please note, the token in the project instructions don't work, you'll have to creat your own in the Github Developer Settings.
 
 ## Architecture
 

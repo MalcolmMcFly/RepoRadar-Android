@@ -41,7 +41,7 @@ class ReposViewModel(
         viewModelScope.launch {
 
             if (!NetworkUtils.isNetworkAvailable(getApplication())) {
-                _topStarredReposState.value = UIState.Error(Exception("No internet connection"))
+                _topStarredReposState.value = UIState.NetworkError
                 return@launch
             }
 
