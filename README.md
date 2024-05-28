@@ -16,7 +16,11 @@ starred Github repositories.
 
 ## Getting Started
 To get started create the `apikeys.properties` at root level of the project and enter the value for `github.token=`  
-Please note, the token in the project instructions don't work, you'll have to creat your own in the Github Developer Settings.
+Please note, the token in the project instructions don't work, you'll have to create your own in the Github Developer Settings.
+
+## Documentation
+This Android app has comprehensive documentation generated with [Dokka](https://github.com/Kotlin/dokka). To generate the docs, simply run `./gradlew dokkaHtml` from the root level of the project. The docs can be opened from a web browser locally from `app/build/dokka/html/index.html`.
+![Dokka Documentation](docs/dokka.png)
 
 ## Architecture
 

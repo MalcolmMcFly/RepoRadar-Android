@@ -12,6 +12,8 @@ import org.koin.core.context.startKoin
 
 /**
  * Custom Application class for initializing global application state.
+ *
+ * This class sets up Koin for dependency injection when the application starts.
  */
 class RepoRadar : Application() {
 
@@ -26,6 +28,9 @@ class RepoRadar : Application() {
 
     /**
      * Initializes Koin with the application context, logging, and modules.
+     *
+     * This function sets up Koin, a dependency injection framework, with the application context,
+     * logging, and the necessary modules for dependency injection.
      */
     private fun initKoin() {
         startKoin {

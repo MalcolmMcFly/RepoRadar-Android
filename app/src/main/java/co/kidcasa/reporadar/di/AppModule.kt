@@ -19,14 +19,26 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+/**
+ * Koin module for providing dependencies across the application.
+ */
 val appModule = module {
 
+    /**
+     * Provides a singleton instance of Moshi for JSON serialization and deserialization.
+     */
     single {
         Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
     }
 
+    /**
+     * Provides a singleton instance of GitHubApi for accessing GitHub API endpoints.
+     *
+     * Configures Retrofit with Moshi for JSON conversion, OkHttpClient for HTTP requests,
+     * and logging interceptor for debugging purposes.
+     */
     single {
         val logging = HttpLoggingInterceptor()
         logging.level =
@@ -51,21 +63,47 @@ val appModule = module {
         Retrofit.Builder()
             .baseUrl(BuildConfig.GITHUB_BASE_URL)
             .client(client)
-             .addConverterFactory(MoshiConverterFactory.create(get()))
-            // .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(get()))
             .build()
             .create(GitHubApi::class.java)
     }
 
-    single<GitHubRepository> { GitHubRepositoryImpl(get()) }
     /**
-     * ViewModel providers
+     * Provides a singleton instance of GitHubRepository.
+     *
+     * Uses GitHubRepositoryImpl as the implementation of GitHubRepository.
+     */
+    single<GitHubRepository> { GitHubRepositoryImpl(get()) }
+
+    /**
+     * Provides the ViewModel for repositories.
+     *
+     * Sets up the ReposViewModel with the necessary dependencies.
      */
     viewModel { ReposViewModel(get(), get()) }
 }
 
+/**
+ * Default connection timeout duration in seconds.
+ */
 const val DEFAULT_CONNECTION_TIMEOUT: Long = 60
+
+/**
+ * MIME type for application/json.
+ */
 const val APPLICATION_JSON = "application/json"
+
+/**
+ * Header key for Content-Type.
+ */
 const val CONTENT_TYPE = "Content-Type"
+
+/**
+ * Header key for Accept.
+ */
 const val ACCEPT = "Accept"
+
+/**
+ * Header key for Authorization.
+ */
 const val AUTHORIZATION = "Authorization"
