@@ -9,6 +9,7 @@ import co.kidcasa.reporadar.api.GitHubApi
 import co.kidcasa.reporadar.api.GitHubRepository
 import co.kidcasa.reporadar.api.GitHubRepositoryImpl
 import co.kidcasa.reporadar.topstarredrepos.viewmodel.ReposViewModel
+import co.kidcasa.reporadar.utils.NetworkUtils
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.util.concurrent.TimeUnit
@@ -75,12 +76,14 @@ val appModule = module {
      */
     single<GitHubRepository> { GitHubRepositoryImpl(get()) }
 
+    single { NetworkUtils() }
+
     /**
      * Provides the ViewModel for repositories.
      *
      * Sets up the ReposViewModel with the necessary dependencies.
      */
-    viewModel { ReposViewModel(get(), get()) }
+    viewModel { ReposViewModel(get(), get(), get()) }
 }
 
 /**

@@ -27,7 +27,8 @@ import org.koin.core.component.KoinComponent
  */
 class ReposViewModel(
     application: Application,
-    private val gitHubRepository: GitHubRepository
+    private val gitHubRepository: GitHubRepository,
+    private val networkUtils: NetworkUtils
 ) : AndroidViewModel(application), KoinComponent {
 
     private val _topStarredReposState =
@@ -44,7 +45,7 @@ class ReposViewModel(
     fun getTopStarredRepos() {
         viewModelScope.launch {
 
-            if (!NetworkUtils.isNetworkAvailable(getApplication())) {
+            if (!networkUtils.isNetworkAvailable(getApplication())) {
                 _topStarredReposState.value = UIState.NetworkError
                 return@launch
             }

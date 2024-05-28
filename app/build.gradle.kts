@@ -27,6 +27,14 @@ android {
     namespace = "co.kidcasa.reporadar"
     compileSdk = 34
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildFeatures {
         buildConfig = true
     }
@@ -93,6 +101,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material)
     implementation(libs.androidx.material3)
+    implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -113,4 +122,12 @@ dependencies {
 
     // Network
     implementation(libs.bundles.network)
+
+    // Testing dependencies
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    testImplementation("org.robolectric:robolectric:4.9.2")
+    testImplementation("io.mockk:mockk:1.13.3")
+    androidTestImplementation("io.mockk:mockk-android:1.13.3")
 }

@@ -11,7 +11,7 @@ import android.net.NetworkCapabilities
 /**
  * Utility object for checking network connectivity status.
  */
-object NetworkUtils {
+class NetworkUtils {
 
     /**
      * Checks if internet is available.
