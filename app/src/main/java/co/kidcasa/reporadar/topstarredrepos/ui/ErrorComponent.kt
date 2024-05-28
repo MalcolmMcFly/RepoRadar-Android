@@ -26,6 +26,13 @@ import co.kidcasa.reporadar.ui.theme.Pink40
 import co.kidcasa.reporadar.ui.theme.RepoRadarTheme
 import co.kidcasa.reporadar.ui.theme.defaultButtonHeight
 
+/**
+ * A composable function that displays an error message with a retry button.
+ *
+ * @param title The title of the error message, defaults to a string resource.
+ * @param buttonTitle The text for the retry button, defaults to a string resource.
+ * @param onRetry A callback function to be invoked when the retry button is clicked.
+ */
 @Composable
 fun ErrorComponent(
     title: String = stringResource(R.string.error_screen_title),
@@ -47,9 +54,7 @@ fun ErrorComponent(
                 Button(
                     modifier = Modifier
                         .height(defaultButtonHeight)
-                        .align(
-                            Alignment.CenterHorizontally
-                        ),
+                        .align(Alignment.CenterHorizontally),
                     onClick = { onRetry() },
                     colors = ButtonColors(
                         containerColor = Pink40,
@@ -65,6 +70,9 @@ fun ErrorComponent(
     }
 }
 
+/**
+ * A preview function for [ErrorComponent] to display it in Android Studio's preview.
+ */
 @Preview(showBackground = true)
 @Composable
 fun ErrorComponentPreview() {

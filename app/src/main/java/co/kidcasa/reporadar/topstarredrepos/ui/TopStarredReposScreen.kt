@@ -33,6 +33,13 @@ import co.kidcasa.reporadar.topstarredrepos.data.Item
 import co.kidcasa.reporadar.topstarredrepos.data.RepoWithContributor
 import co.kidcasa.reporadar.ui.theme.Purple40
 
+/**
+ * A composable function that displays the top starred repositories along with their top contributors.
+ *
+ * @param topStarredReposState The state of the top starred repositories, wrapped in a [UIState].
+ * @param onGetTopStarredRepos A callback function to fetch the top starred repositories.
+ * @param launchSettings A callback function to launch the network settings.
+ */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun TopStarredReposScreen(
@@ -72,7 +79,8 @@ fun TopStarredReposScreen(
                             items(state.data.size) { index ->
                                 RepoComponent(
                                     rank = index,
-                                   repoWithContributor =  state.data[index])
+                                    repoWithContributor = state.data[index]
+                                )
                             }
                         }
                         PullRefreshIndicator(
@@ -103,6 +111,9 @@ fun TopStarredReposScreen(
     }
 }
 
+/**
+ * A preview function for [TopStarredReposScreen] to display it in Android Studio's preview.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun TopStarredReposScreenPreview() {

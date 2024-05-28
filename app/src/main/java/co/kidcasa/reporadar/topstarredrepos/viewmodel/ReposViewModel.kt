@@ -36,6 +36,10 @@ class ReposViewModel(
 
     /**
      * Fetches the list of top starred repositories.
+     *
+     * This function checks for network availability and then attempts to fetch the top starred repositories
+     * from the GitHub API. If successful, it updates the UI state with the list of repositories. It also
+     * attempts to fetch the top contributors for each repository and updates the UI state accordingly.
      */
     fun getTopStarredRepos() {
         viewModelScope.launch {
@@ -69,7 +73,7 @@ class ReposViewModel(
                             }
                             repoWithContributor.copy(topContributor = topContributor)
                         } catch (exception: Exception) {
-                            // If it fails, atleast give back just the repos as is
+                            // If it fails, at least give back just the repos as is
                             Log.e(TAG, "Failed to get contributors")
                             exception.printStackTrace()
                             repoWithContributor

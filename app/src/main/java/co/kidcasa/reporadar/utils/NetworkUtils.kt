@@ -8,10 +8,19 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
+/**
+ * Utility object for checking network connectivity status.
+ */
 object NetworkUtils {
 
     /**
-     * Checks if internet is available
+     * Checks if internet is available.
+     *
+     * This function checks the network capabilities to determine if there is an active
+     * network connection with internet access.
+     *
+     * @param context The application context.
+     * @return True if there is an active network connection with internet access, false otherwise.
      */
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

@@ -4,10 +4,18 @@
 
 package co.kidcasa.reporadar.topstarredrepos.data
 
+/**
+ * Object containing sample mock data for previews.
+ *
+ * This object provides mock data for top starred repositories and contributors,
+ * which can be used for previewing UI components in the application.
+ */
 object PreviewMocks {
 
     /**
      * Sample mock data for top starred repositories response.
+     *
+     * This mock data includes a list of items representing repositories with various attributes.
      */
     val topStarredReposResponse = TopStarredReposResponse(
         total_count = 40,
@@ -110,6 +118,8 @@ object PreviewMocks {
 
     /**
      * Sample mock data for contributors response.
+     *
+     * This mock data represents a single contributor with various attributes.
      */
     val contributorsResponse =
         ContributorsResponseItem(
